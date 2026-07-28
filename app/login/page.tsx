@@ -1,3 +1,7 @@
-export default function Page() {
-  return <h1>Hello, Next.js!</h1>;
+"use client";
+
+import LoginForm from "../../views/Login/LoginForm";
+
+export default function LoginPage() {
+  return <LoginForm />;
 }
