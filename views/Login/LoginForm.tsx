@@ -74,11 +74,8 @@ export default function LoginForm() {
             mt: 2,
           }}
         >
-          Don't have an account?{" "}
-          <Link
-            component={NextLink}
-            href="/signup"
-          >
+          Don&apos;t have an account?{" "}
+          <Link component={NextLink} href="/signup">
             Sign Up
           </Link>
         </Typography>
