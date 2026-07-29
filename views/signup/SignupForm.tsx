@@ -2,7 +2,12 @@
 
 import NextLink from "next/link";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Button, Link, TextField, Typography } from "@mui/material";
+import {
+  Button,
+  Link,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { useForm } from "react-hook-form";
 
 import { schema, FormData } from "./types";
@@ -71,7 +76,10 @@ export default function SignupForm() {
             helperText={errors.password?.message}
           />
 
-          <Button variant="contained" type="submit">
+          <Button
+            variant="contained"
+            type="submit"
+          >
             Sign Up
           </Button>
         </Form>
@@ -83,7 +91,10 @@ export default function SignupForm() {
           }}
         >
           Already have an account?{" "}
-          <Link component={NextLink} href="/login">
+          <Link
+            component={NextLink}
+            href="/login"
+          >
             Login
           </Link>
         </Typography>
