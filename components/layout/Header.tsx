@@ -7,7 +7,7 @@ import { AppBar, Badge, Box, Button, IconButton, Toolbar, Typography } from '@mu
 
 const navLinks = [
   { label: 'Home', href: '/' },
-  { label: 'Bestsellers', href: '/bestsellers' },
+  { label: 'Bestseller', href: '/bestseller' },
   { label: 'Our Story', href: '/our-story' },
   { label: 'Contact Us', href: '/contact' },
 ];

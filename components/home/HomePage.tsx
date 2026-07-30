@@ -892,7 +892,7 @@ function GiftSection() {
                   }}
                 >
                   From new homes to meaningful moments, Bloomifier creates gifts that feel personal.
-                  A fragrance is more than a scent — it becomes part of someone&apos;s everyday
+                  A fragrance is more than a scent - it becomes part of someone&apos;s everyday
                   story.
                 </Typography>
 
