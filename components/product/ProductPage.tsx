@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { useState } from "react";
+import { useState } from 'react';
 
 import {
   Box,
@@ -15,797 +15,579 @@ import {
   Stack,
   Grid,
   Typography,
-} from "@mui/material";
+} from '@mui/material';
 
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import Collapse from "@mui/material/Collapse";
-
-
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Collapse from '@mui/material/Collapse';
 
 export default function ProductPage() {
-
   const products = [
     {
-      name:"Boozy Coffee",
-      notes:"Espresso • Vanilla • Amber",
+      name: 'Boozy Coffee',
+      notes: 'Espresso • Vanilla • Amber',
       description:
-        "A warm coffee-inspired aroma crafted to fill your home with comfort, richness, and calm.",
-      images:[
-        "https://cdn.shopify.com/s/files/1/0574/7926/6364/files/26_6f3eda17-4299-4668-aa75-3aab565c4f40_480x480.jpg?v=1683285356",
-        "/images/products/boozy-coffee/2.jpg",
-        "/images/products/boozy-coffee/3.jpg",
-        "/images/products/boozy-coffee/4.jpg",
-        "/images/products/boozy-coffee/5.jpg",
+        'A warm coffee-inspired aroma crafted to fill your home with comfort, richness, and calm.',
+      images: [
+        'https://cdn.shopify.com/s/files/1/0574/7926/6364/files/26_6f3eda17-4299-4668-aa75-3aab565c4f40_480x480.jpg?v=1683285356',
+        '/images/products/boozy-coffee/2.jpg',
+        '/images/products/boozy-coffee/3.jpg',
+        '/images/products/boozy-coffee/4.jpg',
+        '/images/products/boozy-coffee/5.jpg',
       ],
     },
 
     {
-      name:"Eternal Rose",
-      notes:"Rose Petals • Soft Musk • Peony",
+      name: 'Eternal Rose',
+      notes: 'Rose Petals • Soft Musk • Peony',
       description:
-        "A timeless floral fragrance that brings softness, romance, and elegance into your space.",
-      images:[
-        "https://cdn.shopify.com/s/files/1/0574/7926/6364/files/12_e992132c-7b6c-4c66-ab8f-ef226fd9d92d_480x480.jpg?v=1683285185",
-        "/images/products/eternal-rose/2.jpg",
-        "/images/products/eternal-rose/3.jpg",
-        "/images/products/eternal-rose/4.jpg",
-        "/images/products/eternal-rose/5.jpg",
+        'A timeless floral fragrance that brings softness, romance, and elegance into your space.',
+      images: [
+        'https://cdn.shopify.com/s/files/1/0574/7926/6364/files/12_e992132c-7b6c-4c66-ab8f-ef226fd9d92d_480x480.jpg?v=1683285185',
+        '/images/products/eternal-rose/2.jpg',
+        '/images/products/eternal-rose/3.jpg',
+        '/images/products/eternal-rose/4.jpg',
+        '/images/products/eternal-rose/5.jpg',
       ],
     },
 
     {
-      name:"Midnight Chocolate",
-      notes:"Dark Cocoa • Vanilla • Warm Spice",
-      description:
-        "A rich indulgent aroma inspired by chocolate warmth and cozy evenings.",
-      images:[
-        "https://cdn.shopify.com/s/files/1/0574/7926/6364/files/13_b5b1d1ee-aeeb-498f-90ec-a4755483af00_480x480.jpg?v=1683285210",
-        "/images/products/midnight-chocolate/2.jpg",
-        "/images/products/midnight-chocolate/3.jpg",
-        "/images/products/midnight-chocolate/4.jpg",
-        "/images/products/midnight-chocolate/5.jpg",
+      name: 'Midnight Chocolate',
+      notes: 'Dark Cocoa • Vanilla • Warm Spice',
+      description: 'A rich indulgent aroma inspired by chocolate warmth and cozy evenings.',
+      images: [
+        'https://cdn.shopify.com/s/files/1/0574/7926/6364/files/13_b5b1d1ee-aeeb-498f-90ec-a4755483af00_480x480.jpg?v=1683285210',
+        '/images/products/midnight-chocolate/2.jpg',
+        '/images/products/midnight-chocolate/3.jpg',
+        '/images/products/midnight-chocolate/4.jpg',
+        '/images/products/midnight-chocolate/5.jpg',
       ],
     },
   ];
 
+  const [activeProduct, setActiveProduct] = useState(0);
 
-  const [activeProduct,setActiveProduct] = useState(0);
+  const [activeImage, setActiveImage] = useState(0);
 
-  const [activeImage,setActiveImage] = useState(0);
-
-  const [purchaseType,setPurchaseType] =
-    useState<"aroma"|"diffuser">("aroma");
-
+  const [purchaseType, setPurchaseType] = useState<'aroma' | 'diffuser'>('aroma');
 
   const product = products[activeProduct];
 
-
-  const price =
-    purchaseType==="aroma"
-    ? 1999
-    : 2499;
-
+  const price = purchaseType === 'aroma' ? 1999 : 2499;
 
   const nextImage = () => {
-
-    setActiveImage((prev)=>
-      prev===product.images.length-1
-      ? 0
-      : prev+1
-    );
-
+    setActiveImage((prev) => (prev === product.images.length - 1 ? 0 : prev + 1));
   };
-
 
   const previousImage = () => {
-
-    setActiveImage((prev)=>
-      prev===0
-      ? product.images.length-1
-      : prev-1
-    );
-
+    setActiveImage((prev) => (prev === 0 ? product.images.length - 1 : prev - 1));
   };
 
-
-  const changeProduct = (index:number)=>{
-
+  const changeProduct = (index: number) => {
     setActiveProduct(index);
     setActiveImage(0);
-
   };
 
-
   return (
-
     <Box
       sx={{
-        background:
-        "linear-gradient(135deg,#FFF8F3 0%,#F9E4EA 55%,#F4D4DD 100%)",
+        background: 'linear-gradient(135deg,#FFF8F3 0%,#F9E4EA 55%,#F4D4DD 100%)',
 
-        py:{
-          xs:4,
-          md:8,
+        py: {
+          xs: 4,
+          md: 8,
         },
       }}
     >
-
       <Container maxWidth="xl">
-
-      <Grid
-        container
-        spacing={{ xs: 2, md: 4 }}
-        sx={{ alignItems: "center" }}
-      >
-
-
+        <Grid container spacing={{ xs: 2, md: 4 }} sx={{ alignItems: 'center' }}>
           {/* IMAGE */}
 
-
           <Grid size={{ xs: 12, md: 6 }}>
-
             <Stack
               spacing={3}
               sx={{
-                alignItems: "center",
+                alignItems: 'center',
               }}
             >
-
               <Box
                 sx={{
-                  position:"relative",
+                  position: 'relative',
 
-                  width:{
-                    xs:320,
-                    md:560,
+                  width: {
+                    xs: 320,
+                    md: 560,
                   },
 
-                  height:{
-                    xs:320,
-                    md:560,
+                  height: {
+                    xs: 320,
+                    md: 560,
                   },
 
-                  borderRadius:"50%",
+                  borderRadius: '50%',
 
-                  overflow:"hidden",
+                  overflow: 'hidden',
 
-                  background:"#FFF8F3",
+                  background: '#FFF8F3',
 
-                  boxShadow:
-                  "0 45px 100px rgba(80,30,50,.22)",
+                  boxShadow: '0 45px 100px rgba(80,30,50,.22)',
                 }}
               >
-
                 <CardMedia
                   component="img"
 
-                  image={
-                    product.images[activeImage]
-                  }
+                  image={product.images[activeImage]}
 
                   alt={product.name}
 
                   sx={{
-                    width:"100%",
-                    height:"100%",
-                    objectFit:"cover",
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
                   }}
                 />
-
 
                 <IconButton
                   onClick={previousImage}
 
                   sx={{
-                    position:"absolute",
-                    left:18,
-                    top:"50%",
-                    transform:"translateY(-50%)",
-                    background:"rgba(255,255,255,.85)",
-                    color:"#C86B83",
+                    position: 'absolute',
+                    left: 18,
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    background: 'rgba(255,255,255,.85)',
+                    color: '#C86B83',
                   }}
                 >
-                  <ArrowBackIosNewIcon/>
+                  <ArrowBackIosNewIcon />
                 </IconButton>
-
-
 
                 <IconButton
                   onClick={nextImage}
 
                   sx={{
-                    position:"absolute",
-                    right:18,
-                    top:"50%",
-                    transform:"translateY(-50%)",
-                    background:"rgba(255,255,255,.85)",
-                    color:"#C86B83",
+                    position: 'absolute',
+                    right: 18,
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    background: 'rgba(255,255,255,.85)',
+                    color: '#C86B83',
                   }}
                 >
-                  <ArrowForwardIosIcon/>
+                  <ArrowForwardIosIcon />
                 </IconButton>
-
-
               </Box>
-
-
 
               <Typography
                 sx={{
-                  color:"#351E27",
-                  fontWeight:800,
-                  fontSize:".85rem",
+                  color: '#351E27',
+                  fontWeight: 800,
+                  fontSize: '.85rem',
                 }}
               >
-                {activeImage+1} / {product.images.length}
+                {activeImage + 1} / {product.images.length}
               </Typography>
 
+              <Stack direction="row" spacing={1}>
+                {product.images.map((image, index) => (
+                  <Box
+                    key={image}
 
+                    onClick={() => setActiveImage(index)}
 
-              <Stack
-                direction="row"
-                spacing={1}
-              >
+                    sx={{
+                      width: 60,
+                      height: 60,
+                      borderRadius: 2,
+                      overflow: 'hidden',
+                      cursor: 'pointer',
 
-                {
-                  product.images.map((image,index)=>(
-
-                    <Box
-                      key={image}
-
-                      onClick={()=>
-                        setActiveImage(index)
-                      }
+                      border:
+                        activeImage === index
+                          ? '3px solid #C86B83'
+                          : '1px solid rgba(200,107,131,.2)',
+                    }}
+                  >
+                    <CardMedia
+                      component="img"
+                      image={image}
 
                       sx={{
-                        width:60,
-                        height:60,
-                        borderRadius:2,
-                        overflow:"hidden",
-                        cursor:"pointer",
-
-                        border:
-                        activeImage===index
-                        ?
-                        "3px solid #C86B83"
-                        :
-                        "1px solid rgba(200,107,131,.2)",
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
                       }}
-                    >
-
-                      <CardMedia
-                        component="img"
-                        image={image}
-
-                        sx={{
-                          width:"100%",
-                          height:"100%",
-                          objectFit:"cover",
-                        }}
-                      />
-
-                    </Box>
-
-                  ))
-                }
-
+                    />
+                  </Box>
+                ))}
               </Stack>
-
-
             </Stack>
-
           </Grid>
 
           {/* PRODUCT DETAILS */}
 
-
-          <Grid
-            size={{ xs: 12, md: 6 }}
-          >
-
+          <Grid size={{ xs: 12, md: 6 }}>
             <Stack
               spacing={3}
               sx={{
                 alignItems: {
-                  xs: "center",
-                  md: "flex-start",
+                  xs: 'center',
+                  md: 'flex-start',
                 },
                 textAlign: {
-                  xs: "center",
-                  md: "left",
+                  xs: 'center',
+                  md: 'left',
                 },
               }}
             >
-
-
               <Typography
                 sx={{
-                  color:"#C86B83",
-                  fontWeight:900,
-                  letterSpacing:2,
-                  fontSize:".85rem",
+                  color: '#C86B83',
+                  fontWeight: 900,
+                  letterSpacing: 2,
+                  fontSize: '.85rem',
                 }}
               >
                 THE BLOOMIFIER COLLECTION
               </Typography>
 
-
-
               <Typography
                 sx={{
-                  color:"#351E27",
-                  fontWeight:950,
+                  color: '#351E27',
+                  fontWeight: 950,
 
-                  fontSize:{
-                    xs:"2.3rem",
-                    md:"3.5rem",
+                  fontSize: {
+                    xs: '2.3rem',
+                    md: '3.5rem',
                   },
 
-                  lineHeight:1.1,
+                  lineHeight: 1.1,
                 }}
               >
                 {product.name}
               </Typography>
 
-
-
               <Typography
                 sx={{
-                  color:"#C86B83",
-                  fontWeight:800,
+                  color: '#C86B83',
+                  fontWeight: 800,
                 }}
               >
                 {product.notes}
               </Typography>
 
-
-
               <Typography
                 sx={{
-                  color:"#6B555B",
-                  lineHeight:1.9,
-                  maxWidth:520,
+                  color: '#6B555B',
+                  lineHeight: 1.9,
+                  maxWidth: 520,
                 }}
               >
                 {product.description}
               </Typography>
 
-
-
-
               {/* AROMA VARIANTS */}
-
 
               <Stack
                 direction="row"
                 spacing={2}
                 useFlexGap
                 sx={{
-                  flexWrap: "wrap",
+                  flexWrap: 'wrap',
                   justifyContent: {
-                    xs: "center",
-                    md: "space-between",
+                    xs: 'center',
+                    md: 'space-between',
                   },
                 }}
               >
+                {products.map((item, index) => (
+                  <Chip
+                    key={item.name}
 
-                {
-                  products.map((item,index)=>(
+                    label={item.name}
 
-                    <Chip
-                      key={item.name}
+                    onClick={() => changeProduct(index)}
 
-                      label={item.name}
+                    sx={{
+                      px: 1,
+                      py: 2.2,
+                      borderRadius: 3,
+                      fontWeight: 800,
 
-                      onClick={()=>
-                        changeProduct(index)
-                      }
+                      background: activeProduct === index ? '#C86B83' : '#FFF8F3',
 
-                      sx={{
-                        px:1,
-                        py:2.2,
-                        borderRadius:3,
-                        fontWeight:800,
+                      color: activeProduct === index ? '#fff' : '#351E27',
 
-                        background:
-                        activeProduct===index
-                        ?
-                        "#C86B83"
-                        :
-                        "#FFF8F3",
-
-                        color:
-                        activeProduct===index
-                        ?
-                        "#fff"
-                        :
-                        "#351E27",
-
-                        border:
-                        "1px solid rgba(200,107,131,.25)",
-                      }}
-                    />
-
-                  ))
-                }
-
+                      border: '1px solid rgba(200,107,131,.25)',
+                    }}
+                  />
+                ))}
               </Stack>
-
-
-
-
 
               {/* SETUP */}
 
-
               <Typography
                 sx={{
-                  color:"#351E27",
-                  fontWeight:900,
-                  fontSize:"1.1rem",
+                  color: '#351E27',
+                  fontWeight: 900,
+                  fontSize: '1.1rem',
                 }}
               >
                 Choose your setup
               </Typography>
 
-
-
-              <Grid
-                container
-                spacing={2}
-                sx={{ width: "100%" }}
-              >
-
-
+              <Grid container spacing={2} sx={{ width: '100%' }}>
                 <Grid size={{ xs: 12, sm: 6 }}>
-
                   <Paper
-
                     elevation={0}
 
-                    onClick={()=>
-                      setPurchaseType("aroma")
-                    }
+                    onClick={() => setPurchaseType('aroma')}
 
                     sx={{
-
-                      p:{
-                        xs:2.5,
-                        md:3,
+                      p: {
+                        xs: 2.5,
+                        md: 3,
                       },
 
-                      borderRadius:4,
+                      borderRadius: 4,
 
-                      textAlign:"center",
+                      textAlign: 'center',
 
-                      cursor:"pointer",
+                      cursor: 'pointer',
 
-                      background:
-                      purchaseType==="aroma"
-                      ?
-                      "#F9E4EA"
-                      :
-                      "#FFF8F3",
+                      background: purchaseType === 'aroma' ? '#F9E4EA' : '#FFF8F3',
 
                       border:
-                      purchaseType==="aroma"
-                      ?
-                      "2px solid #C86B83"
-                      :
-                      "1px solid rgba(200,107,131,.18)",
-
+                        purchaseType === 'aroma'
+                          ? '2px solid #C86B83'
+                          : '1px solid rgba(200,107,131,.18)',
                     }}
-
                   >
-
                     <Typography
                       sx={{
-                        color:"#351E27",
-                        fontWeight:900,
+                        color: '#351E27',
+                        fontWeight: 900,
                       }}
                     >
                       Aroma Refill
                     </Typography>
 
-
                     <Typography
                       sx={{
-                        color:"#C86B83",
-                        fontWeight:950,
-                        fontSize:"1.35rem",
-                        mt:.5,
+                        color: '#C86B83',
+                        fontWeight: 950,
+                        fontSize: '1.35rem',
+                        mt: 0.5,
                       }}
                     >
                       ₹1999
                     </Typography>
 
-
                     <Typography
                       sx={{
-                        color:"#6B555B",
-                        fontSize:".82rem",
-                        mt:.5,
+                        color: '#6B555B',
+                        fontSize: '.82rem',
+                        mt: 0.5,
                       }}
                     >
                       For existing Bloomifier homes
                     </Typography>
-
-
                   </Paper>
-
-
                 </Grid>
 
-
-
-
-
                 <Grid size={{ xs: 12, sm: 6 }}>
-
                   <Paper
-
                     elevation={0}
 
-                    onClick={()=>
-                      setPurchaseType("diffuser")
-                    }
+                    onClick={() => setPurchaseType('diffuser')}
 
                     sx={{
-
-                      p:{
-                        xs:2.5,
-                        md:3,
+                      p: {
+                        xs: 2.5,
+                        md: 3,
                       },
 
-                      borderRadius:4,
+                      borderRadius: 4,
 
-                      textAlign:"center",
+                      textAlign: 'center',
 
-                      cursor:"pointer",
+                      cursor: 'pointer',
 
-                      background:
-                      purchaseType==="diffuser"
-                      ?
-                      "#F9E4EA"
-                      :
-                      "#FFF8F3",
+                      background: purchaseType === 'diffuser' ? '#F9E4EA' : '#FFF8F3',
 
                       border:
-                      purchaseType==="diffuser"
-                      ?
-                      "2px solid #C86B83"
-                      :
-                      "1px solid rgba(200,107,131,.18)",
-
+                        purchaseType === 'diffuser'
+                          ? '2px solid #C86B83'
+                          : '1px solid rgba(200,107,131,.18)',
                     }}
-
                   >
-
                     <Typography
                       sx={{
-                        color:"#351E27",
-                        fontWeight:900,
+                        color: '#351E27',
+                        fontWeight: 900,
                       }}
                     >
                       Add Diffuser
                     </Typography>
 
-
                     <Typography
                       sx={{
-                        color:"#C86B83",
-                        fontWeight:950,
-                        fontSize:"1.35rem",
-                        mt:.5,
+                        color: '#C86B83',
+                        fontWeight: 950,
+                        fontSize: '1.35rem',
+                        mt: 0.5,
                       }}
                     >
                       +₹500
                     </Typography>
 
-
                     <Typography
                       sx={{
-                        color:"#6B555B",
-                        fontSize:".82rem",
-                        mt:.5,
+                        color: '#6B555B',
+                        fontSize: '.82rem',
+                        mt: 0.5,
                       }}
                     >
                       Start your first Bloomifier ritual
                     </Typography>
-
-
                   </Paper>
-
-
                 </Grid>
-
-
               </Grid>
 
-
-
-
-
               {/* PROMISE */}
-
 
               <Paper
                 elevation={0}
 
                 sx={{
-                  width:"100%",
+                  width: '100%',
 
-                  p:2.5,
+                  p: 2.5,
 
-                  borderRadius:4,
+                  borderRadius: 4,
 
-                  background:"#FFF8F3",
+                  background: '#FFF8F3',
 
-                  border:
-                  "1px solid rgba(200,107,131,.18)",
+                  border: '1px solid rgba(200,107,131,.18)',
                 }}
               >
-
                 <Stack
                   direction="row"
                   spacing={2}
                   sx={{
-                    alignItems: "center",
+                    alignItems: 'center',
                   }}
                 >
-
                   <CheckCircleIcon
                     sx={{
-                      color:"#C86B83",
-                      fontSize:34,
+                      color: '#C86B83',
+                      fontSize: 34,
                     }}
                   />
 
-
                   <Box>
-
                     <Typography
                       sx={{
-                        color:"#351E27",
-                        fontWeight:950,
+                        color: '#351E27',
+                        fontWeight: 950,
                       }}
                     >
                       30 Day Bloomifier Guarantee
                     </Typography>
 
-
                     <Typography
                       sx={{
-                        color:"#6B555B",
-                        fontSize:".9rem",
+                        color: '#6B555B',
+                        fontSize: '.9rem',
                       }}
                     >
-                      Don't love it? Get your money back, no questions asked!
+                      Don&apos;t love it? Get your money back, no questions asked!
                     </Typography>
-
-
                   </Box>
-
-
                 </Stack>
-
-
               </Paper>
-
-
-
-
 
               {/* BUY BUTTON */}
 
-
               <Button
-
                 fullWidth
 
                 variant="contained"
 
                 sx={{
-                  py:2,
+                  py: 2,
 
-                  borderRadius:10,
+                  borderRadius: 10,
 
-                  background:"#C86B83",
+                  background: '#C86B83',
 
-                  color:"#fff",
+                  color: '#fff',
 
-                  fontWeight:950,
+                  fontWeight: 950,
 
-                  fontSize:"1.15rem",
+                  fontSize: '1.15rem',
 
-                  textTransform:"none",
+                  textTransform: 'none',
 
-                  boxShadow:
-                  "0 18px 40px rgba(200,107,131,.35)",
+                  boxShadow: '0 18px 40px rgba(200,107,131,.35)',
 
-                  "&:hover":{
-                    background:"#AE526D",
+                  '&:hover': {
+                    background: '#AE526D',
                   },
                 }}
-
               >
                 Buy Now — ₹{price}
-
               </Button>
-
-
-
-
 
               {/* ASSURANCES */}
               <Stack
                 direction="row"
                 spacing={{ xs: 2, md: 4 }}
                 sx={{
-                  width: "100%",
+                  width: '100%',
                   flexGrow: 1,
                   flex: 1,
-                  alignSelf: "stretch",
+                  alignSelf: 'stretch',
                   mx: 2,
                   px: 2,
-                  flexWrap: "nowrap",
-                  justifyContent: "space-between",
-                  alignItems: "center",
+                  flexWrap: 'nowrap',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
                 }}
               >
-              {[
-                "✓ Secure Payment",
-                "✓ Premium Quality",
-                "✓ Fast Delivery",
-              ].map((item) => (
-                <Typography
-                  key={item}
-                  sx={{
-                    flex: 1,
-                    color: "#6B555B",
-                    fontWeight: 700,
-                    fontSize: {
-                      xs: "0.7rem",
-                      md: "0.85rem",
-                    },
-                    whiteSpace: "nowrap",
-                    textAlign: "center",
-                  }}
-                >
-                  {item}
-                </Typography>
-              ))}
+                {['✓ Secure Payment', '✓ Premium Quality', '✓ Fast Delivery'].map((item) => (
+                  <Typography
+                    key={item}
+                    sx={{
+                      flex: 1,
+                      color: '#6B555B',
+                      fontWeight: 700,
+                      fontSize: {
+                        xs: '0.7rem',
+                        md: '0.85rem',
+                      },
+                      whiteSpace: 'nowrap',
+                      textAlign: 'center',
+                    }}
+                  >
+                    {item}
+                  </Typography>
+                ))}
+              </Stack>
             </Stack>
-
-
-            </Stack>
-
-
           </Grid>
-
-
         </Grid>
-
-
       </Container>
       <StorySection />
       <FeelingSection />
       <FAQSection />
       <LoveSection />
       <FinalCTASection />
-
     </Box>
-
-
   );
-
 }
-
-
-
 
 function StorySection() {
   const stories = [
@@ -962,8 +744,6 @@ function StorySection() {
   );
 }
 
-
-
 function FeelingSection() {
   return (
     <Box
@@ -1099,405 +879,290 @@ function FeelingSection() {
   );
 }
 
-
 function FAQSection() {
-
   const faqs = [
     {
-      question:"Do I need a diffuser to buy Bloomifier?",
+      question: 'Do I need a diffuser to buy Bloomifier?',
       answer:
-      "No. If you already own a Bloomifier diffuser, simply choose your favourite Aroma Refill. If this is your first time, select Add Diffuser and create your complete Bloomifier setup.",
+        'No. If you already own a Bloomifier diffuser, simply choose your favourite Aroma Refill. If this is your first time, select Add Diffuser and create your complete Bloomifier setup.',
     },
 
     {
-      question:"What is included in my first Bloomifier setup?",
+      question: 'What is included in my first Bloomifier setup?',
       answer:
-      "Your first setup includes the Bloomifier diffuser along with your selected aroma experience. Everything you need to transform your space arrives together.",
+        'Your first setup includes the Bloomifier diffuser along with your selected aroma experience. Everything you need to transform your space arrives together.',
     },
 
     {
-      question:"How long does one Aroma Refill last?",
+      question: 'How long does one Aroma Refill last?',
       answer:
-      "Our aromas are designed for long-lasting everyday fragrance. The experience depends on your preferred intensity and room size, allowing you to create the atmosphere you love.",
+        'Our aromas are designed for long-lasting everyday fragrance. The experience depends on your preferred intensity and room size, allowing you to create the atmosphere you love.',
     },
 
     {
-      question:"Which Bloomifier aroma should I choose?",
+      question: 'Which Bloomifier aroma should I choose?',
       answer:
-      "Choose Boozy Coffee for warmth and comfort, Eternal Rose for elegance and softness, or Midnight Chocolate for a rich and cozy atmosphere.",
+        'Choose Boozy Coffee for warmth and comfort, Eternal Rose for elegance and softness, or Midnight Chocolate for a rich and cozy atmosphere.',
     },
 
     {
-      question:"Can I switch between different aromas?",
+      question: 'Can I switch between different aromas?',
       answer:
-      "Absolutely. Many Bloomifier customers keep multiple aromas and change them depending on their mood, season, or occasion.",
+        'Absolutely. Many Bloomifier customers keep multiple aromas and change them depending on their mood, season, or occasion.',
     },
 
     {
-      question:"Where can I use Bloomifier?",
+      question: 'Where can I use Bloomifier?',
       answer:
-      "Bloomifier is designed to elevate bedrooms, living rooms, workspaces, and any space where you want a beautiful signature scent.",
+        'Bloomifier is designed to elevate bedrooms, living rooms, workspaces, and any space where you want a beautiful signature scent.',
     },
 
     {
-      question:"Will the fragrance be too strong?",
+      question: 'Will the fragrance be too strong?',
       answer:
-      "Bloomifier is designed for a balanced experience - noticeable enough to transform your space while remaining comfortable for everyday living.",
+        'Bloomifier is designed for a balanced experience - noticeable enough to transform your space while remaining comfortable for everyday living.',
     },
 
     {
-      question:"Why choose Bloomifier over regular room fragrances?",
+      question: 'Why choose Bloomifier over regular room fragrances?',
       answer:
-      "Bloomifier combines beautiful design, premium aromas, and a refill system created for a long-lasting home fragrance experience.",
+        'Bloomifier combines beautiful design, premium aromas, and a refill system created for a long-lasting home fragrance experience.',
     },
 
     {
-      question:"Can I gift Bloomifier?",
+      question: 'Can I gift Bloomifier?',
       answer:
-      "Yes. Bloomifier makes a thoughtful gift for housewarmings, celebrations, and anyone who loves creating a beautiful home.",
+        'Yes. Bloomifier makes a thoughtful gift for housewarmings, celebrations, and anyone who loves creating a beautiful home.',
     },
 
     {
-      question:"How do I order more aromas later?",
+      question: 'How do I order more aromas later?',
       answer:
-      "Simply return to the product page, select your preferred Aroma Refill, and checkout. You never need to purchase another diffuser.",
+        'Simply return to the product page, select your preferred Aroma Refill, and checkout. You never need to purchase another diffuser.',
     },
   ];
 
-
-  const [openIndex,setOpenIndex] =
-  useState<number | null>(null);
-
-
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-
     <Box
       sx={{
-        background:"#FFF8F3",
+        background: '#FFF8F3',
 
-        py:{
-          xs:7,
-          md:11,
+        py: {
+          xs: 7,
+          md: 11,
         },
       }}
     >
-
       <Container maxWidth="md">
-
-
         <Stack
           spacing={2}
           sx={{
             mb: { xs: 2, md: 4 },
-            alignItems: "center",
-            textAlign: "center",
+            alignItems: 'center',
+            textAlign: 'center',
           }}
         >
-
-
           <Typography
             sx={{
-              color:"#C86B83",
-              fontWeight:950,
-              letterSpacing:3,
+              color: '#C86B83',
+              fontWeight: 950,
+              letterSpacing: 3,
 
-              fontSize:{
-                xs:"1.1rem",
-                md:"1.35rem",
+              fontSize: {
+                xs: '1.1rem',
+                md: '1.35rem',
               },
 
-              textTransform:"uppercase",
+              textTransform: 'uppercase',
             }}
           >
             FAQs
           </Typography>
 
-
-
           <Typography
             sx={{
-              color:"#351E27",
-              fontWeight:950,
+              color: '#351E27',
+              fontWeight: 950,
 
-              fontSize:{
-                xs:"2.1rem",
-                md:"3.2rem",
+              fontSize: {
+                xs: '2.1rem',
+                md: '3.2rem',
               },
 
-              lineHeight:1.15,
+              lineHeight: 1.15,
             }}
           >
             Everything you need to know
-            <br/>
+            <br />
             before bringing Bloomifier home
           </Typography>
 
-
-
           <Typography
             sx={{
-              color:"#6B555B",
+              color: '#6B555B',
 
-              maxWidth:600,
+              maxWidth: 600,
 
-              lineHeight:1.8,
+              lineHeight: 1.8,
 
-              fontSize:{
-                xs:".95rem",
-                md:"1rem",
+              fontSize: {
+                xs: '.95rem',
+                md: '1rem',
               },
             }}
           >
-            From choosing your first aroma to keeping your home
-            smelling incredible, we have answered everything you need.
+            From choosing your first aroma to keeping your home smelling incredible, we have
+            answered everything you need.
           </Typography>
-
-
         </Stack>
-
-
-
-
 
         <Stack spacing={2}>
+          {faqs.map((faq, index) => {
+            const open = openIndex === index;
 
+            return (
+              <Paper
+                key={faq.question}
 
-          {
-            faqs.map((faq,index)=>{
+                elevation={0}
 
-              const open =
-              openIndex===index;
+                onClick={() => {
+                  setOpenIndex(open ? null : index);
+                }}
 
+                sx={{
+                  p: {
+                    xs: 2.2,
+                    md: 3,
+                  },
 
-              return (
+                  borderRadius: 5,
 
-                <Paper
+                  cursor: 'pointer',
 
-                  key={faq.question}
+                  background: open ? '#F9E4EA' : '#FFF8F3',
 
-                  elevation={0}
+                  border: '1px solid rgba(200,107,131,.18)',
 
-                  onClick={()=>{
+                  transition: 'all .3s ease',
 
-                    setOpenIndex(
-                      open
-                      ?
-                      null
-                      :
-                      index
-                    );
-
-                  }}
-
-
+                  '&:hover': {
+                    boxShadow: '0 12px 30px rgba(200,107,131,.12)',
+                  },
+                }}
+              >
+                <Box
                   sx={{
-
-                    p:{
-                      xs:2.2,
-                      md:3,
-                    },
-
-                    borderRadius:5,
-
-                    cursor:"pointer",
-
-                    background:
-                    open
-                    ?
-                    "#F9E4EA"
-                    :
-                    "#FFF8F3",
-
-
-                    border:
-                    "1px solid rgba(200,107,131,.18)",
-
-
-                    transition:
-                    "all .3s ease",
-
-
-                    "&:hover":{
-                      boxShadow:
-                      "0 12px 30px rgba(200,107,131,.12)",
-                    },
-
+                    display: 'flex',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    gap: 2,
                   }}
-
                 >
-
-
-
-                  <Box
+                  <Typography
                     sx={{
-                      display:"flex",
-                      flexDirection:"row",
-                      alignItems:"center",
-                      gap:2,
+                      flex: 1,
+
+                      color: '#351E27',
+
+                      fontWeight: 900,
+
+                      fontSize: {
+                        xs: '.95rem',
+                        md: '1.1rem',
+                      },
                     }}
                   >
+                    {faq.question}
+                  </Typography>
 
+                  <ExpandMoreIcon
+                    sx={{
+                      flexShrink: 0,
 
+                      color: '#C86B83',
 
-                    <Typography
-                      sx={{
+                      fontSize: {
+                        xs: 30,
+                        md: 34,
+                      },
 
-                        flex:1,
+                      background: '#FFF8F3',
 
-                        color:"#351E27",
+                      borderRadius: '50%',
 
-                        fontWeight:900,
+                      p: 0.4,
 
-                        fontSize:{
-                          xs:".95rem",
-                          md:"1.1rem",
-                        },
+                      transition: 'transform .3s ease',
 
-                      }}
-                    >
-                      {faq.question}
-                    </Typography>
+                      transform: open ? 'rotate(180deg)' : 'rotate(0deg)',
+                    }}
+                  />
+                </Box>
 
+                <Collapse in={open}>
+                  <Typography
+                    sx={{
+                      color: '#6B555B',
 
+                      lineHeight: 1.8,
 
-                    <ExpandMoreIcon
+                      mt: 2,
 
-                      sx={{
-
-                        flexShrink:0,
-
-                        color:"#C86B83",
-
-                        fontSize:{
-                          xs:30,
-                          md:34,
-                        },
-
-                        background:"#FFF8F3",
-
-                        borderRadius:"50%",
-
-                        p:.4,
-
-
-                        transition:
-                        "transform .3s ease",
-
-
-                        transform:
-                        open
-                        ?
-                        "rotate(180deg)"
-                        :
-                        "rotate(0deg)",
-
-                      }}
-
-                    />
-
-
-                  </Box>
-
-
-
-
-
-                  <Collapse in={open}>
-
-
-                    <Typography
-                      sx={{
-
-                        color:"#6B555B",
-
-                        lineHeight:1.8,
-
-                        mt:2,
-
-                        fontSize:".95rem",
-
-                      }}
-                    >
-                      {faq.answer}
-                    </Typography>
-
-
-                  </Collapse>
-
-
-
-                </Paper>
-
-              );
-
-            })
-          }
-
-
+                      fontSize: '.95rem',
+                    }}
+                  >
+                    {faq.answer}
+                  </Typography>
+                </Collapse>
+              </Paper>
+            );
+          })}
         </Stack>
 
-
-
-
         <Paper
-
           elevation={0}
 
           sx={{
+            mt: 5,
 
-            mt:5,
+            p: 3,
 
-            p:3,
+            borderRadius: 5,
 
-            borderRadius:5,
+            textAlign: 'center',
 
-            textAlign:"center",
+            background: '#F9E4EA',
 
-            background:"#F9E4EA",
-
-            border:
-            "1px solid rgba(200,107,131,.18)",
-
+            border: '1px solid rgba(200,107,131,.18)',
           }}
-
         >
-
           <Typography
             sx={{
-              color:"#351E27",
-              fontWeight:950,
-              fontSize:"1.1rem",
+              color: '#351E27',
+              fontWeight: 950,
+              fontSize: '1.1rem',
             }}
           >
             Still have questions?
           </Typography>
 
-
           <Typography
             sx={{
-              color:"#6B555B",
-              mt:1,
+              color: '#6B555B',
+              mt: 1,
             }}
           >
-            We're here to help you create the perfect home atmosphere. So send us an E-Mail and we'll get back to you within 24 hours.
+            We&apos;re here to help you create the perfect home atmosphere. So send us an E-Mail and
+            we&apos;ll get back to you within 24 hours.
           </Typography>
-
-
         </Paper>
-
-
-
       </Container>
-
-
     </Box>
-
   );
-
 }
-
-
 
 function LoveSection() {
   const moments = [
