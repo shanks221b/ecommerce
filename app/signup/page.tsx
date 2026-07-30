@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import SignupForm from "../../views/signup/SignupForm";
+import SignupForm from '../../views/signup/SignupForm';
 
 export default function SignupPage() {
   return <SignupForm />;
