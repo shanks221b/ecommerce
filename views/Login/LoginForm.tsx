@@ -1,9 +1,14 @@
 'use client';
 
-import NextLink from 'next/link';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { Button, Link, TextField, Typography } from '@mui/material';
-import { useForm } from 'react-hook-form';
+import NextLink from "next/link";
+import { yupResolver } from "@hookform/resolvers/yup";
+import {
+  Button,
+  Link,
+  TextField,
+  Typography,
+} from "@mui/material";
+import { useForm } from "react-hook-form";
 
 import { schema, FormData } from './types';
 import { Page, Card, Form } from './styles';
@@ -55,7 +60,10 @@ export default function LoginForm() {
             helperText={errors.password?.message}
           />
 
-          <Button variant="contained" type="submit">
+          <Button
+            variant="contained"
+            type="submit"
+          >
             Login
           </Button>
         </Form>
