@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import NextLink from "next/link";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -10,8 +10,8 @@ import {
 } from "@mui/material";
 import { useForm } from "react-hook-form";
 
-import { schema, FormData } from "./types";
-import { Page, Card, Form } from "./styles";
+import { schema, FormData } from './types';
+import { Page, Card, Form } from './styles';
 
 export default function SignupForm() {
   const {
@@ -21,10 +21,10 @@ export default function SignupForm() {
   } = useForm<FormData>({
     resolver: yupResolver(schema),
     defaultValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: "",
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
     },
   });
 
@@ -38,7 +38,7 @@ export default function SignupForm() {
         <Typography
           variant="h4"
           sx={{
-            textAlign: "center",
+            textAlign: 'center',
             mb: 3,
           }}
         >
@@ -48,14 +48,14 @@ export default function SignupForm() {
         <Form onSubmit={handleSubmit(submit)}>
           <TextField
             label="First Name"
-            {...register("firstName")}
+            {...register('firstName')}
             error={!!errors.firstName}
             helperText={errors.firstName?.message}
           />
 
           <TextField
             label="Last Name"
-            {...register("lastName")}
+            {...register('lastName')}
             error={!!errors.lastName}
             helperText={errors.lastName?.message}
           />
@@ -63,7 +63,7 @@ export default function SignupForm() {
           <TextField
             label="Email"
             type="email"
-            {...register("email")}
+            {...register('email')}
             error={!!errors.email}
             helperText={errors.email?.message}
           />
@@ -71,7 +71,7 @@ export default function SignupForm() {
           <TextField
             label="Password"
             type="password"
-            {...register("password")}
+            {...register('password')}
             error={!!errors.password}
             helperText={errors.password?.message}
           />
@@ -86,15 +86,12 @@ export default function SignupForm() {
 
         <Typography
           sx={{
-            textAlign: "center",
+            textAlign: 'center',
             mt: 2,
           }}
         >
-          Already have an account?{" "}
-          <Link
-            component={NextLink}
-            href="/login"
-          >
+          Already have an account?{' '}
+          <Link component={NextLink} href="/login">
             Login
           </Link>
         </Typography>

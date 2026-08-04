@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import NextLink from "next/link";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -10,8 +10,8 @@ import {
 } from "@mui/material";
 import { useForm } from "react-hook-form";
 
-import { schema, FormData } from "./types";
-import { Page, Card, Form } from "./styles";
+import { schema, FormData } from './types';
+import { Page, Card, Form } from './styles';
 
 export default function LoginForm() {
   const {
@@ -21,8 +21,8 @@ export default function LoginForm() {
   } = useForm<FormData>({
     resolver: yupResolver(schema),
     defaultValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     },
   });
 
@@ -36,7 +36,7 @@ export default function LoginForm() {
         <Typography
           variant="h4"
           sx={{
-            textAlign: "center",
+            textAlign: 'center',
             mb: 3,
           }}
         >
@@ -47,7 +47,7 @@ export default function LoginForm() {
           <TextField
             label="Email"
             type="email"
-            {...register("email")}
+            {...register('email')}
             error={!!errors.email}
             helperText={errors.email?.message}
           />
@@ -55,7 +55,7 @@ export default function LoginForm() {
           <TextField
             label="Password"
             type="password"
-            {...register("password")}
+            {...register('password')}
             error={!!errors.password}
             helperText={errors.password?.message}
           />
@@ -70,11 +70,11 @@ export default function LoginForm() {
 
         <Typography
           sx={{
-            textAlign: "center",
+            textAlign: 'center',
             mt: 2,
           }}
         >
-          Don&apos;t have an account?{" "}
+          Don&apos;t have an account?{' '}
           <Link component={NextLink} href="/signup">
             Sign Up
           </Link>
